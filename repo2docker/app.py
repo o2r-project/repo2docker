@@ -669,9 +669,10 @@ class Repo2Docker(Application):
 
                 if not self.dry_run:
                     if self.user_id == 0:
-                        raise ValueError(
-                            "Root as the primary user in the image is not permitted."
-                        )
+                        self.log.warning("ROOT user with id %s\n", self.user_id)
+                        # raise ValueError(
+                        #     "Root as the primary user in the image is not permitted."
+                        # )
 
                     build_args = {
                         "NB_USER": self.user_name,
