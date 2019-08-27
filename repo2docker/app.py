@@ -513,6 +513,10 @@ class Repo2Docker(Application):
                 port,
                 "--NotebookApp.custom_display_url=http://{}:{}".format(host_name, port),
             ]
+
+            if self.user_id == 0:
+                run_cmd.append("--allow-root")
+
             ports = {"%s/tcp" % port: port}
         else:
             # run_cmd given by user, if port is also given then pass it on
